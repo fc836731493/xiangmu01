@@ -3,18 +3,56 @@
      <div class="index-left">
         <div class="index-left-block">
            <h2>全部产品</h2>
-           <div v-for="product in productList">
+           <div v-for="(product,index) in productList">
               <h3>{{ product.category }}</h3>
               <ul>
                   <li v-for="item in product.list">
-                      <a :href="item.url">{{ item.name }}</a> 
-                      <span  class="hot-tag">HOT</span>                    
+                      <a target="_blank" :href="item.url">{{ item.name }}</a> 
+                      <span v-if="item.hot" class="hot-tag">HOT</span>                    
                   </li>
               </ul>
-            <div v-if="index%2 == 0" class="hr"></div>
+            <div v-if="index%2 ==0" class="hr"></div>
            </div>         
+        </div > 
+        <div class="index-left-block lastest-news">
+          <h2>最新消息</h2>
+             <ul  v-for="items in news">                
+                 <li v-for="item in items.data">
+                      <a target="_blank" :href="item.cover">{{ item.author }}</a>
+                 </li>
+             </ul>
         </div>
-     </div>
+       </div> 
+     <div class="index-right">
+       <div class="swiper-size">
+            <swiper :options="swiperOption"  >
+                <swiper-slide>
+                    <a target="_blank" href="http://www.taobao.com">
+                    <img class="swiperimg" src="../assets/slideShow/j1.jpg">
+                    </a>
+                </swiper-slide>
+                <swiper-slide>
+                    <a target="_blank" href="http://www.taobao.com">
+                    <img class="swiperimg" src="../assets/slideShow/j2.jpg">
+                     </a>
+                </swiper-slide>
+                <swiper-slide>
+                    <a target="_blank" href="http://www.taobao.com">
+                    <img class="swiperimg" src="../assets/slideShow/j3.jpg">
+                     </a>
+                </swiper-slide>
+                <swiper-slide>
+                    <a target="_blank" href="http://www.taobao.com">
+                    <img class="swiperimg" src="../assets/slideShow/j4.jpg">
+                     </a>
+                </swiper-slide>
+                <div class="swiper-pagination"  slot="pagination"></div>
+                <div class="swiper-button-prev" slot="button-prev"></div>
+                <div class="swiper-button-next" slot="button-next"></div>
+         </swiper>
+        </div>     
+     </div>      
+  
   </div>
 </template>
 
@@ -23,24 +61,35 @@ export default {
    name:"layout",
    data(){
        return{
+            swiperOption: {
+                pagination: {
+                        el: '.swiper-pagination',
+                },
+                loop:true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }
+              },
+           news:[],
            productList:[
                {
                    category:"手机应用类",
                    list:[
                        {
                            name:"91助手",
-                           url:"https://www.baidu.com/"
-                           
+                           url:"https://www.baidu.com/",
+                           hot:false                                                                            
                        },
                         {
                            name:"豌豆荚",
-                           url:"https://www.baidu.com/"
-                           
+                           url:"https://www.baidu.com/",
+                           hot:true                          
                        },
                         {
                            name:"金山毒霸",
-                           url:"https://www.baidu.com/"
-                           
+                           url:"https://www.baidu.com/",
+                           hot:false                          
                        }
                    ]
                 },
@@ -48,27 +97,43 @@ export default {
                    list:[
                        {
                            name:"WenStorm",
-                           url:"https://www.baidu.com/"
-                           
+                           url:"https://www.baidu.com/",
+                           hot:false                           
                        },
                         {
                            name:"HBuiler",
-                           url:"https://www.baidu.com/"
-                           
+                           url:"https://www.baidu.com/",
+                           hot:false                          
                        },
                         {
                            name:"Sublime Text 3",
-                           url:"https://www.baidu.com/"
-                           
+                           url:"https://www.baidu.com/",
+                           hot:true                           
                        },
                        {
                            name:"Atom",
-                           url:"https://www.baidu.com/"
-                           
+                           url:"https://www.baidu.com/",
+                           hot:false                          
                        }
                    ]}                
            ]
        }
+   },
+   created(){
+       this.$axios.get("https://www.apiopen.top/novelInfoApi?name=%E7%9B%97%E5%A2%93%E7%AC%94%E8%AE%B0",{
+           params:{
+               count:10,
+               type:"top"
+           }
+       })
+       .then(res => {
+           console.log(res.data);
+           this.news = res.data;
+           console.log(this.news);
+       })
+       .catch(error => {
+           console.log(error)
+       })
    }
 }
 </script>
@@ -170,5 +235,13 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+.swiperimg {
+    width:100%;
+    height: 370px;
+}
+.swiper-size {
+    margin-top: 15px;
+    height: 400px;
 }
 </style>
