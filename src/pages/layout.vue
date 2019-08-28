@@ -7,10 +7,12 @@
               <h3>{{ product.category }}</h3>
               <ul>
                   <li v-for="item in product.list">
-                      <a :href="item.url">{{ item.name }}</a>
+                      <a :href="item.url">{{ item.name }}</a> 
+                      <span  class="hot-tag">HOT</span>                    
                   </li>
               </ul>
-           </div>
+            <div v-if="index%2 == 0" class="hr"></div>
+           </div>         
         </div>
      </div>
   </div>
@@ -28,14 +30,17 @@ export default {
                        {
                            name:"91助手",
                            url:"https://www.baidu.com/"
+                           
                        },
                         {
                            name:"豌豆荚",
                            url:"https://www.baidu.com/"
+                           
                        },
                         {
                            name:"金山毒霸",
                            url:"https://www.baidu.com/"
+                           
                        }
                    ]
                 },
@@ -44,18 +49,22 @@ export default {
                        {
                            name:"WenStorm",
                            url:"https://www.baidu.com/"
+                           
                        },
                         {
                            name:"HBuiler",
                            url:"https://www.baidu.com/"
+                           
                        },
                         {
                            name:"Sublime Text 3",
                            url:"https://www.baidu.com/"
+                           
                        },
                        {
                            name:"Atom",
                            url:"https://www.baidu.com/"
+                           
                        }
                    ]}                
            ]
