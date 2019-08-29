@@ -1,12 +1,12 @@
 <template>
    <div class="selection-component">
-       <div class="selection-show">
-           <span>初级版</span>
+       <div class="selection-show" @click="showHide">
+           <span>{{ this.DownData[nowIndex].name }}</span>
            <div class="arrow"></div>
        </div>
-       <div class="selection-list">
+       <div class="selection-list" v-show="show">
            <ul>
-               <li v-for="item in DownData">{{item.name}}</li>
+               <li @click="selectList(index)" v-for="(item,index) in DownData">{{item.name}}</li>
            </ul>
        </div>
    </div>
@@ -17,24 +17,31 @@ export default {
     name:"downmenu",
     data(){
         return{
-
+           nowIndex:0,
+           show:false
         }
     },
     props:{
-        DownData:[
-            {
-                name:"初级版",
-                value:1
-            },
-            {
-                name:"中级版",
-                value:2
-            },
-            {
-                name:"高级版",
-                value:3
-            }
-        ]
+        DownData:{
+            type:Array,
+            default:function(){
+                return[                  
+                            {
+                                name:"test",
+                                value:1
+                            }    
+                      ]
+                              }
+                }
+    },
+    methods:{
+        selectList(index){
+            this.nowIndex = index;
+            this.show = false;
+        },
+        showHide(){
+            this.show = !this.show;
+        }
     }
 }
 </script>

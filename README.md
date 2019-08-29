@@ -17,6 +17,7 @@
 .chooser-list li.active {
     border-color: #4fc08d;
     
+    
 }
 
 

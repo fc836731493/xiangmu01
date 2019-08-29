@@ -19,7 +19,16 @@
            产品类型：          
         </div>
         <div class="sales-board-line-right">
-          <DownMenu />
+          <DownMenu :DownData=" DownMenu" />
+        </div>
+      </div>
+
+      <div class="sales-board-line">
+        <div class="sales-board-line-left">
+           有效时间：          
+        </div>
+        <div class="sales-board-line-right">
+          <Radios :Radios="Radios" />
         </div>
       </div>
     </div>
@@ -50,6 +59,7 @@
 
 import Counter from "./components/Counter"
 import DownMenu from "./components/DownMenu"
+import Radios from "./components/Radios"
 
 export default {
    name:"earth",
@@ -58,12 +68,45 @@ export default {
           Counter:{
              max:10,
              min:1
-          }
-       }
+          },
+          DownMenu:[                  
+                     {
+                        name:"初级版",
+                        value:1
+                     },
+                     {
+                        name:"中级版",
+                        value:2
+                     },
+                     {
+                        name:"高级版",
+                        value:3
+                     }       
+                   ],      
+       Radios : [
+                    {
+                        title:"1个月",
+                        value:1
+                    },
+                    {
+                        title:"3个月",
+                        value:3
+                    },
+                    {
+                        title:"半年",
+                        value:6
+                    },
+                    {
+                        title:"年费",
+                        value:12
+                    }
+                ]
+           }
    },
    components:{
       Counter,
-      DownMenu
+      DownMenu,
+      Radios
    }
 }
 </script>
