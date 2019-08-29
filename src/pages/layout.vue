@@ -50,7 +50,19 @@
                 <div class="swiper-button-prev" slot="button-prev"></div>
                 <div class="swiper-button-next" slot="button-next"></div>
          </swiper>
-        </div>     
+        </div> 
+        <div class="index-board-list">
+            <div class="index-board-item" v-for="(borad,index) in boradList" :class="['index-board-'+borad.tag,{'line-last' : index%2 !==0}]">
+               <div class="index-board-item-inner" >
+                    <h2>{{ borad.title }}</h2>
+                    <p>{{ borad.desc }}</p>
+                    <div class="index-board-button">
+                        <router-link :to="{path:'/details/'+borad.tag}" target="_blank"  class="button">立即购买</router-link>
+                    </div>
+               </div>
+            </div>
+            
+        </div>    
      </div>      
   
   </div>
@@ -72,6 +84,28 @@ export default {
                 }
               },
            news:[],
+           boradList:[
+               {
+                   title:"开放产品",
+                   desc:"开放产品是一款开放产品",
+                   tag:"earth"
+               },
+                {
+                   title:"品牌营销",
+                   desc:"品牌营销帮助你的产品更好的找到定位",
+                   tag:"loud"
+               },
+                {
+                   title:"使命必达",
+                   desc:"使命必达快递迭代永远保持最前端的速度",
+                   tag:"car"
+               },
+                {
+                   title:"勇攀高峰",
+                   desc:"帮你勇闯高峰，到达事业的顶峰",
+                   tag:"hill"
+               }
+           ],
            productList:[
                {
                    category:"手机应用类",
@@ -184,6 +218,7 @@ export default {
 }
 .index-board-list {
     overflow: hidden;
+    margin-top: 15px;
 }
 .index-board-item {
     float: left;
@@ -243,5 +278,12 @@ export default {
 .swiper-size {
     margin-top: 15px;
     height: 400px;
+}
+.button {
+    color: #fff;
+    background: #4fc08d;
+    padding: 10px 20px;
+    display: inline-block;
+    cursor: pointer;
 }
 </style>

@@ -1,21 +1,23 @@
-# xiangmu01
+<style scoped>
+.chooser-component {
+    position: relative;
+    display: inline-block;
+}
+.chooser-list li {
+    display: inline-block;
+    border: 1px solid #e3e3e3;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 8px;
+    margin-right: 5px;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+.chooser-list li.active {
+    border-color: #4fc08d;
+    
+}
 
-> A Vue.js project
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+</style>
