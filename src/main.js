@@ -6,6 +6,8 @@ import router from './router'
 import Axios from "axios"
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+import Store from "./store"
+
 Vue.use(VueAwesomeSwiper)
 
 Vue.prototype.$axios = Axios
@@ -32,6 +34,7 @@ Axios.interceptors.response.use(function(response){
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

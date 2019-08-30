@@ -30,6 +30,7 @@ export default {
     methods:{
         choose(index){
             this.nowIndex = index;
+            this.$emit("radios",this.Radios[index].value);
         }
     }
 }

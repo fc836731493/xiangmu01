@@ -38,6 +38,7 @@ export default {
         selectList(index){
             this.nowIndex = index;
             this.show = false;
+            this.$emit("downmenu",this.DownData[index].value);
         },
         showHide(){
             this.show = !this.show;

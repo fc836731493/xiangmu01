@@ -10,7 +10,7 @@
              购买数量：
           </div>
           <div class="sales-board-line-right">
-             <Counter :max="Counter.max" :min="Counter.min" />
+             <Counter @counter="getGoodInfo('counter',$event)" :max="Counter.max" :min="Counter.min" />
           </div>
        </div>
 
@@ -19,7 +19,7 @@
            产品类型：          
         </div>
         <div class="sales-board-line-right">
-          <DownMenu :DownData=" DownMenu" />
+          <DownMenu @downmenu="getGoodInfo('downmenu',$event)" :DownData=" DownMenu" />
         </div>
       </div>
 
@@ -28,9 +28,29 @@
            有效时间：          
         </div>
         <div class="sales-board-line-right">
-          <Radios :Radios="Radios" />
+          <Radios @radios="getGoodInfo('radios',$event)" :Radios="Radios" />
         </div>
       </div>
+
+      <div class="sales-board-line">
+        <div class="sales-board-line-left">
+           总价：          
+        </div>
+        <div class="sales-board-line-right">
+           {{  getTotalPrice }}元
+        </div>
+      </div>
+
+      <div class="sales-board-line">
+        <div class="sales-board-line-left">
+                    
+        </div>
+        <div class="sales-board-line-right">
+           <a class="button" href="#">立即购买</a>
+        </div>
+      </div>
+
+
     </div>
     <div class="sales-board-des">
          <h2>产品说明</h2>
@@ -64,7 +84,11 @@ import Radios from "./components/Radios"
 export default {
    name:"earth",
    data(){
-       return{
+       return{          
+          counter:1,
+          downmenu:1,
+          radios:1,
+          totalprice:0,
           Counter:{
              max:10,
              min:1
@@ -107,6 +131,34 @@ export default {
       Counter,
       DownMenu,
       Radios
+   },
+   methods:{
+      // getCounterNum(data){
+      //    console.log(data);
+      // },
+      // getDownMenu(data){
+      //    console.log(data);
+      // },
+      // getRadios(data){
+      //    console.log(data);
+      // }
+      getGoodInfo(key,value){
+         /*
+         this:指向当前组件
+          */
+         this[key]=value;
+         var readyData = {
+            "counter":this.counter,  //5元
+            "downmenu":this.downmenu,  //2元
+            "radios":this.radios      //10元
+         }
+      //   this.totalprice =  readyData.counter*readyData.downmenu*readyData.radios*10 ;
+      }
+   },
+   computed:{
+      getTotalPrice(){
+         return this.counter*this.downmenu*this.radios*10;
+      }
    }
 }
 </script>
@@ -133,6 +185,13 @@ export default {
    background: #4fc08d;
    color: #fff;
    border: 1px solid #4fc08d;
+}
+.button {
+    color: #fff;
+    background: #4fc08d;
+    padding: 10px 20px;
+    display: inline-block;
+    cursor: pointer;
 }
 
 </style>

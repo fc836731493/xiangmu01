@@ -32,12 +32,14 @@ export default {
                return;
            }
           this.number--;
+          this.$emit("counter",this.number)
        },
        maxs(){
            if(this.number >= this.max){
                return;
            }
           this.number++;
+          this.$emit("counter",this.number)
        },
        inputHandler(){
            let fix;
@@ -50,7 +52,8 @@ export default {
                // 把最小值给他
                fix = this.min
            }
-           this.number = fix
+           this.number = fix;
+           this.$emit("counter",this.number)
        }
    }
 }
