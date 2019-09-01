@@ -6,9 +6,11 @@ import router from './router'
 import Axios from "axios"
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
-import Store from "./store"
+import store from "./store"
+import VueResource from "vue-resource"
 
 Vue.use(VueAwesomeSwiper)
+Vue.use(VueResource)
 
 Vue.prototype.$axios = Axios
 Axios.defaults.baseURL = "https://www.apiopen.top"

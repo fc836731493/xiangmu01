@@ -1,6 +1,6 @@
 <template>
   <div>
-      hill
+      hill:{{ getTotalPrice }}
   </div>
 </template>
 
@@ -11,6 +11,21 @@ export default {
        return{
 
        }
+   },
+   computed:{
+     
+      getTotalPrice(){
+         return this.$store.getters.getTotalPrice;
+      }
+   },
+   created(){
+      this.$http.get("https://www.apiopen.top/journalismApi")
+      .then(res => {
+          console.log(res.body.data);
+      })
+      .catch(error => {
+         console.log(error);
+      })
    }
 }
 </script>

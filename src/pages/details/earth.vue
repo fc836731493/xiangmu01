@@ -9,7 +9,7 @@
           <div class="sales-board-line-left">
              购买数量：
           </div>
-          <div class="sales-board-line-right">
+          <div class="sales-board-line-right">            
              <Counter @counter="getGoodInfo('counter',$event)" :max="Counter.max" :min="Counter.min" />
           </div>
        </div>
@@ -47,6 +47,7 @@
         </div>
         <div class="sales-board-line-right">
            <a class="button" href="#">立即购买</a>
+           <a class="button" href="#">添加购物车</a>
         </div>
       </div>
 
@@ -157,7 +158,11 @@ export default {
    },
    computed:{
       getTotalPrice(){
-         return this.counter*this.downmenu*this.radios*10;
+         this.$store.dispatch("updatePrice",this.counter*this.downmenu*this.radios*10);
+         return this.$store.getters.getTotalPrice;
+      },
+      getOrder(){
+         return this.$store.getters.getOrder;
       }
    }
 }

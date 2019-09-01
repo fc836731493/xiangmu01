@@ -1,6 +1,6 @@
 <template>
   <div>
-     car
+     car{{ getOrder }}
   </div>
 </template>
 
@@ -11,6 +11,12 @@ export default {
        return{
 
        }
+   },
+   computed:{
+     
+      getOrder(){
+         return this.$store.getters.getOrder;
+      }
    }
 }
 </script>

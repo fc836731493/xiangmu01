@@ -33,6 +33,7 @@ export default {
            }
           this.number--;
           this.$emit("counter",this.number)
+          this.$store.dispatch ("updateOrder",["counter",this.number])
        },
        maxs(){
            if(this.number >= this.max){
@@ -40,6 +41,7 @@ export default {
            }
           this.number++;
           this.$emit("counter",this.number)
+          this.$store.dispatch("updateOrder",["counter",this.number])
        },
        inputHandler(){
            let fix;
@@ -54,6 +56,7 @@ export default {
            }
            this.number = fix;
            this.$emit("counter",this.number)
+           this.$store.dispatch("updateOrder",["counter",this.number])
        }
    }
 }
